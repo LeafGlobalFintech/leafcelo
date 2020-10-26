@@ -1,5 +1,5 @@
 LeafCelo
-- An asset-backed defi platofmr for refugee
+An asset-backed defi platofmr for refugee
 
 - Architecture
 - Implementation
