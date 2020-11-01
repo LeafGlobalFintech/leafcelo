@@ -14,6 +14,8 @@
 		- issuingRewards()  
 		- burnTokens()
  	- Mobile Wallet	
+- Build
+- Testing
 - Announcements
 	- [The 18 finalists of Celo Camp Batch 2](https://medium.com/celoorg/the-18-finalists-in-celo-camp-batch-2-the-up-and-coming-startups-bringing-financial-inclusion-to-845b67e960c8)
 - FAQS
