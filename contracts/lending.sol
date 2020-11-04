@@ -1,6 +1,6 @@
 pragma solidity >=0.4.22 <0.8.0;
 
-contract stacking {
+contract lending {
    /**
      * @notice This internal function will let know who are all the stakeholders interested in stakin.
      */
@@ -8,12 +8,12 @@ contract stacking {
     /**
      * @notice Value of the stake investeed by an individual refugee.
      */
-    mapping(address => uint256) public stakeAmount;
+    mapping(address => uint256) public lendingAmount;
 
       /**
-     * @notice Duration for which this value of the stake is invested for by an individual refugee.
+     * @notice Duration of lending.
      */
-    mapping(address => uint256) public stakeDuration;
+    mapping(address => uint256) public lendingDuration;
 
     /**
      * @notice The accumulated rewards of a refugee .
@@ -25,12 +25,9 @@ contract stacking {
      * @param _stake The size of the stake to be created.
      * @param _duration Duration of the.
      */
-    function putStake(uint256 _stake, uint256 _duration)
+    function requestLending(uint256 amount)
         public
     {
-      
-        _burn(msg.sender, _stake, _duration);
-        if(stakeAmount[msg.sender] == 0) (msg.sender);
-        stakeAmount[msg.sender] = stakeAmount[msg.sender].add(_stake);
+            return _duration + 3
     }
 }
