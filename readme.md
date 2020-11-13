@@ -13,7 +13,7 @@
 		  - address lender,          
           - uint256 valueRequested,
 		  - uint256 valueRequestedDuration
-		  - string collateralDetails;     
+		  - string guarantorDetails;     
         - creatingToken()
   		- addRequester()
 		- addLender()
@@ -24,8 +24,8 @@
 		- requestCancel()    		
 		- issuingRewards()  
 		- burnTokens()
-		- requestCollateral()
-		- releaseCollateral()
+		- requestguarantorDetails()
+		- releaseguarantorAsset()
  	- Mobile Wallet	
 - Build
 - Testing
