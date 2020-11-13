@@ -2,6 +2,7 @@
 ## An asset-backed defi lending platform for refugee
 
 - Architecture
+	- ![Architecture](./img/leafCelo-Arch.png)
 - Implementation
 	- Dependencies 
 		- [openzeppelin-solidity](https://openzeppelin.com/contracts/)
