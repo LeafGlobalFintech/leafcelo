@@ -28,6 +28,11 @@
 		- releaseguarantorAsset()
  	- Mobile Wallet	
 - Build
+Goal of this build is to build the apk for the android
+	- npm i
+    - npm start
+    - npm run android(second terminial) 
+	
 - Testing
 - roadmap
 	- P2P lending
