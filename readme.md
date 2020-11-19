@@ -2,7 +2,7 @@
 ## An asset-backed defi lending platform for refugee
 
 - Architecture
-	- ![Architecture](./img/leafCelo-Arch.png)
+	- ![Architecture](./frontend/img/leafCelo-Arch.png)
 - Implementation
 	- Dependencies 
 		- [openzeppelin-solidity](https://openzeppelin.com/contracts/)
@@ -41,10 +41,10 @@ Goal of this build is to build the apk for the android
 - FAQS
 - Mockup-UI
 - Signin/signup
-	- ![Screenshot](./img/leafCelo-Registration.png)
+	- ![Screenshot](./frontend/img/leafCelo-Registration.png)
 - Apply for loan
-	- ![Apply](./img/leafCelo-Apply.png)	
+	- ![Apply](./frontend/img/leafCelo-Apply.png)	
 - Submit
-	- ![Submit](./img/leafCelo-Submit.png)	
+	- ![Submit](./frontend/img/leafCelo-Submit.png)	
 - Result
-	- ![Result](./img/leafCelo-Result.png)	
+	- ![Result](./frontend/img/leafCelo-Result.png)	
