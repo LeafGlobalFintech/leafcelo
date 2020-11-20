@@ -2,12 +2,11 @@ const express = require('express')
 const UserModel = require('../models/UserModel')
 const Utils = require('../services/Utils')
 const jwtService = require('../services/jwtService')
-
 const router = express.Router();
 
 router.post('/register', async (req, res) => {
   try {
-    let user = await UserModel.findOne({ username: req.body.username });
+    let user = await UserModel.findOne({ username: req.body.username.toLowerCase() });
 
     if (user) {
       return res.sendError("userExists", "User already exists with username.");
@@ -26,6 +25,7 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
+    console.log("Login")
     let user = await UserModel.findOne({ username: req.body.username.toLowerCase() });
     if (!user) {
       return res.sendError("userNotFound", "User not found");

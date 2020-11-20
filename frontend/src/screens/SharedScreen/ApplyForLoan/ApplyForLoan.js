@@ -9,8 +9,9 @@ import {
 } from "react-native";
 import { LabelInput } from "../../../components/Forms";
 import { BgView, Header } from "../../../components/Layouts";
-import Button from "../../../components/Button";
+// import Button from "../../../components/Button";
 import DropDownPicker from 'react-native-dropdown-picker';
+import { Button } from 'react-native-paper';
 
 
 class ApplyForLoan extends Component {
@@ -107,7 +108,7 @@ class ApplyForLoan extends Component {
                             }}
 
                         >
-                            <Button onPress={this.onReview} text="Review" />
+                            <Button onPress={this.onReview} mode="contained">Review</Button>
                         </View>
                     </KeyboardAvoidingView>
                 </ScrollView>

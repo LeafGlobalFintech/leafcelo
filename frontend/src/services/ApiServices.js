@@ -3,17 +3,20 @@ import config from "./config";
 import auth from "./AuthService";
 
 class ApiServices {
-    //uri = ""// `http://${manifest.debuggerHost.split(':').shift()}:${config.BACKEND_PORT}`;
-    uri = `http://192.168.1.3:${config.BACKEND_PORT}`;
+    //url = ""// `http://${manifest.debuggerHost.split(':').shift()}:${config.BACKEND_PORT}`;
+    url = `http://192.168.1.2:${config.BACKEND_PORT}`;
     login(username, pin) {
-        return http.post(this.uri + "/api/public/login", { username, pin });
+        return http.post(this.url + "/api/public/login", { username, pin });
     }
 
     register(username, pin) {
-        return http.post(this.uri + "/api/public/register", { username, pin });
+        return http.post(this.url + "/api/public/register", { username, pin });
     }
     isUserNameExist(username) {
-        return http.post(this.uri + "/api/public/isUsernameExist", { username });
+        return http.post(this.url + "/api/public/isUsernameExist", { username });
+    }
+    applyForLoan(amount, interestAmount, Status, reasonForRejected) {
+        return http.post(this.url + "/api/user/applyForLoan", { amount, interestAmount, Status, reasonForRejected });
     }
 
 }

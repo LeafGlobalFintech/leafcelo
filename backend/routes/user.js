@@ -1,24 +1,40 @@
 const express = require('express')
-const UserModel = require('../models/UserModel')
 const Utils = require('../services/Utils')
-
+const Kit = require('@celo/contractkit')
+const kit = Kit.newKit('https://alfajores-forno.celo-testnet.org')
+const getAccount = require('../services/GetAccountService').getAccount;
+const LoanModel = require('../models/LoanModel')
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-  let accounts = await AccountModel.list({})
-  res.send(accounts);
-});
 
-
-router.post("/", async (req, res) => {
+router.post("/applyForLoan", async (req, res) => {
   try {
-    let objAccount = new AccountModel(req.body);
-    await objAccount.save();
+    let userDetail = req.userData.user || {}
+    if (!userDetail.celoPublicKey) {
+      let accountDetail = await getAccount();
+      userDetail.celoPublicKey = accountDetail.privateKey;
+    }
+    if (!userDetail.tx) {
+      //Call Another API
+    }
+    let LoanObject = new LoanModel(userDetail)
+    let loanDetail = await LoanObject.save()
+    res.sendSuccess(loanDetail, "Loan Request added successfully!");
   }
   catch (ex) {
     res.sendError(ex, Utils.parseErrorString(ex));
   }
 });
 
+router.get("/getLoanDetail", async (req, res) => {
+  try {
+    let loanId = req.body.loanId;
+    let loanObj = await LoanModel.findOne({ loanId: loanId })
+    res.sendSuccess(loanObj, "Loan Detail.");
+  }
+  catch (ex) {
+    res.sendError(ex, Utils.parseErrorString(ex));
+  }
+})
 
 module.exports = router;

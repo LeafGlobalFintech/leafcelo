@@ -11,12 +11,21 @@ export const Header = (props) => {
   return (
     <Header_
       {...props}
+      style={{
+        shadowColor: '#000',
+        shadowOffset: { width: 1, height: 1 },
+        shadowOpacity: 0.4,
+        shadowRadius: 3,
+        elevation: 5,
+      }}
       containerStyle={{
         backgroundColor: theme.background,
-        paddingHorizontal: 10,
+        // paddingHorizontal: 10,
         height: 60,
         paddingTop: 0,
+        fontWeight: 'bold',
         ...props.containerStyle,
+
       }}
     />
   );
@@ -55,9 +64,9 @@ export const HeaderWithBack = ({ title, onBackPress, containerStyle }) => {
           text: title,
           style: {
             color: theme.basic,
-            fontWeight: "600",
+            fontWeight: "bold",
             fontFamily: "Rubik-Regular",
-            fontSize: 18,
+            fontSize: 20,
           },
         }}
         containerStyle={containerStyle}
@@ -85,9 +94,9 @@ export const HeaderWithOutBack = ({ title, onBackPress, containerStyle }) => {
           text: title,
           style: {
             color: theme.basic,
-            fontWeight: "600",
+            fontWeight: "bold",
             fontFamily: "Rubik-Regular",
-            fontSize: 18,
+            fontSize: 20,
           },
         }}
         containerStyle={containerStyle}

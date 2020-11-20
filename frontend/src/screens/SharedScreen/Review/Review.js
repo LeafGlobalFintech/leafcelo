@@ -9,8 +9,9 @@ import {
 } from "react-native";
 import { LabelInput } from "../../../components/Forms";
 import { BgView, Header } from "../../../components/Layouts";
-import Button from "../../../components/Button";
-import DropDownPicker from 'react-native-dropdown-picker';
+// import Button from "../../../components/Button";
+// import DropDownPicker from 'react-native-dropdown-picker';
+import { Button } from 'react-native-paper';
 
 
 class Review extends Component {
@@ -85,18 +86,14 @@ class Review extends Component {
                             editable={false}
                         />
 
-
-
-                        <View
-                            style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                marginTop: "10%",
-                                marginBottom: "10%",
-                            }}
-                        >
-                            <Button onPress={this.onApply} text="Apply" />
+                        <View style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            marginTop: "10%",
+                            marginBottom: "10%",
+                        }}>
+                            <Button onPress={this.onApply} mode="contained">Apply</Button>
                         </View>
                     </KeyboardAvoidingView>
                 </ScrollView>
