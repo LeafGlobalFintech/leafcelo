@@ -23,7 +23,7 @@
 		- requestWithdraw()
 		- requestCancel()    		
 		- issuingRewards()  
-		- burnTokens()
+		
 		- requestguarantorDetails()
 		- releaseguarantorAsset()
  	- Mobile Wallet	
