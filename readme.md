@@ -17,7 +17,7 @@
         - creatingToken()
   		- addRequester()
 		- addLender()
-		- requestToken()
+		
 		- calculateInterests()
 		- watchDuration()
 		- requestWithdraw()
