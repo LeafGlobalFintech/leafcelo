@@ -28,7 +28,7 @@ router.post("/applyForLoan", async (req, res) => {
     requestLoanObject.status = req.body.status;
     requestLoanObject.reasonForRejected = req.body.reasonForRejected;
 
-    if (userDetail.tx) {
+    if (!userDetail.tx) {
       //Call Another API
       userDetail.tx = { loaned: 646464, txid: "ASDFGHJKLZXCVBNMQWERTYIOP" }//Dummy Responce
     }
