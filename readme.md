@@ -17,13 +17,13 @@
         - creatingToken()
   		- addRequester()
 		- addLender()
-		- requestToken()
+		
 		- calculateInterests()
 		- watchDuration()
 		- requestWithdraw()
 		- requestCancel()    		
 		- issuingRewards()  
-		- burnTokens()
+		
 		- requestguarantorDetails()
 		- releaseguarantorAsset()
  	- Mobile Wallet	
