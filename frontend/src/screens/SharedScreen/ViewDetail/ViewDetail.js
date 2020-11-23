@@ -3,15 +3,18 @@ import {
     View,
     ScrollView,
     KeyboardAvoidingView,
-    AsyncStorage,
+
     ToastAndroid,
     Text,
-    StyleSheet
+    StyleSheet,
+    Alert
 } from "react-native";
 import { LabelInput } from "../../../components/Forms";
 import { BgView, Header } from "../../../components/Layouts";
 import Button from "../../../components/Button";
 import { FAB } from 'react-native-paper';
+import Utils from '../../../services/Utils';
+import AsyncStorage from "@react-native-community/async-storage";
 
 
 class ViewDetail extends Component {
@@ -26,8 +29,27 @@ class ViewDetail extends Component {
         let guarantee = await AsyncStorage.getItem("guarantee")
         await this.setState({ amount: loanAmount, guarantee })
     }
-    payOffLoan = () => {
-        console.log("pay off loan")
+    payOffLoan = async () => {
+        Alert.alert(
+            'Are you sure you want to pay off loan?',
+            '',
+            [
+                {
+                    text: 'No',
+                    onPress: () => console.log('User canceled payoff'),
+                    style: 'cancel'
+                },
+                {
+                    text: 'Yes',
+                    onPress: async () => {
+                        await AsyncStorage.setItem("loanAmount", "0");
+                        await AsyncStorage.setItem("guarantee", "0");
+                        Utils.navigate("home");
+                    }
+                },
+            ],
+            { cancelable: false }
+        );
     }
     render() {
         return (
@@ -86,7 +108,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         margin: 16,
         right: 0,
-        left:0,
+        left: 0,
         bottom: 0,
     },
 })

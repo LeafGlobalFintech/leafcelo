@@ -3,14 +3,14 @@ import {
     View,
     ScrollView,
     KeyboardAvoidingView,
-    AsyncStorage,
+    
     ToastAndroid,
     Text
 } from "react-native";
 import { LabelInput } from "../../../components/Forms";
 import { BgView, Header } from "../../../components/Layouts";
 import Button from "../../../components/Button";
-import DropDownPicker from 'react-native-dropdown-picker';
+import AsyncStorage from "@react-native-community/async-storage";
 
 
 class Loan extends Component {

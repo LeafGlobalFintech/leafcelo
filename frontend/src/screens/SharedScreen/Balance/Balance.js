@@ -3,14 +3,14 @@ import {
     View,
     ScrollView,
     KeyboardAvoidingView,
-    AsyncStorage,
+    
     ToastAndroid,
     Text
 } from "react-native";
 import { LabelInput } from "../../../components/Forms";
 import { BgView, Header } from "../../../components/Layouts";
 import { BalanceCard } from '../../../components/cards';
-
+import AsyncStorage from "@react-native-community/async-storage";
 
 class Balance extends Component {
     state = {

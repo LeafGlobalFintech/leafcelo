@@ -3,7 +3,7 @@ import {
     View,
     ScrollView,
     KeyboardAvoidingView,
-    AsyncStorage,
+    
     ToastAndroid,
     Text
 } from "react-native";
@@ -12,7 +12,7 @@ import { BgView, Header } from "../../../components/Layouts";
 // import Button from "../../../components/Button";
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Button } from 'react-native-paper';
-
+import AsyncStorage from "@react-native-community/async-storage";
 
 class ApplyForLoan extends Component {
     state = {

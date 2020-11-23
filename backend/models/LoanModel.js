@@ -3,9 +3,7 @@ const BaseSchema = require('./BaseSchema');
 
 var LoanSchema = new BaseSchema({
 	loanId: {
-		type: String,
-		required: true,
-		unique: true
+		type:Number,
 	},
 	loanAmount: {
 		type: String,
@@ -19,7 +17,11 @@ var LoanSchema = new BaseSchema({
 	},
 	reasonForRejected: {
 		type: String
+	},
+	tx: {
+		type: Object
 	}
 });
+LoanSchema.plugin(global.AutoIncrement, { inc_field: 'loanId', id: "loan", start_seq: 100001 });
 
 module.exports = mongoose.model('loan', LoanSchema);

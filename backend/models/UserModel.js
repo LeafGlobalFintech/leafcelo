@@ -14,6 +14,9 @@ var UserSchema = new BaseSchema({
 	'celoPublicKey': String,
 	'tx': {
 		type: Object
+	},
+	loanId: {
+		type: Number
 	}
 });
 

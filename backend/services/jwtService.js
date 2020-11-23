@@ -40,9 +40,10 @@ function jwt_MW(req, res, next) {
 
 async function authenticate(user) {
   var newUser = user;
+  console.log(user,"User Id")
   newUser._id = user._id;
-  newUser.role = user.role;
   newUser.username = user.username;
+  console.log(newUser,"newUser")
   const token = jwt.sign({ user: newUser }, config.JWT_TOKEN);
   return token;
 }

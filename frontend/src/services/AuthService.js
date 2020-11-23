@@ -1,4 +1,4 @@
-import { AsyncStorage } from "react-native";
+import AsyncStorage from "@react-native-community/async-storage";
 
 class AuthService {
     TOKEN_KEY = "token";
@@ -24,6 +24,11 @@ class AuthService {
         if (userData)
             return JSON.parse(userData)
         return null;
+    }
+
+    async logout() {
+        await AsyncStorage.clear()
+        //await AsyncStorage.removeItem(this.TOKEN_KEY)
     }
 }
 

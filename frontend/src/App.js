@@ -15,12 +15,16 @@ const theme = {
 };
 
 const App = () => {
+  const [appIteration, setIteration] = React.useState(1);
   useEffect(() => {
     SplashScreen.hide();
   }, []);
   // console.log(DefaultTheme.colors)
+  global.reloadApp = () => {
+    setIteration(appIteration + 1);
+  }
   return (
-    <ThemeContextProvider>
+    <ThemeContextProvider key={appIteration}>
       <PaperProvider theme={theme}>
         <AppContainer />
         <SnackBar />

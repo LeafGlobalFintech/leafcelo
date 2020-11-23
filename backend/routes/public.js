@@ -1,6 +1,6 @@
 const express = require('express')
 const UserModel = require('../models/UserModel')
-const Utils = require('../services/Utils')
+const Utils = require('../services/Utils');
 const jwtService = require('../services/jwtService')
 const router = express.Router();
 
@@ -36,7 +36,7 @@ router.post('/login', async (req, res) => {
     }
 
     delete user.pin;
-    jwtService.authenticate(req.body, user)
+    jwtService.authenticate(user)
       .then(token => {
         return res.sendSuccess({ token: token, userData: user });
       })

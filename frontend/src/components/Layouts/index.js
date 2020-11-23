@@ -1,33 +1,58 @@
 import React, { useContext } from "react";
 import t from "prop-types";
-import { Image, StatusBar, SafeAreaView, View, Platform } from "react-native";
+import { StatusBar, SafeAreaView, View, Platform, TouchableOpacity } from "react-native";
 import { ThemeContext } from "../../hooks/useTheme";
 import { Header as Header_ } from "react-native-elements";
+import { Avatar, Menu } from "react-native-paper";
+import auth from "../../services/AuthService";
 
 export const Header = (props) => {
   const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
   const theme = isLightTheme ? lightTheme : darkTheme;
-
+  const user = global.user;
+  const [visible, setVisible] = React.useState(false);
+  const openMenu = () => setVisible(true);
+  const closeMenu = () => setVisible(false);
+  const logout = async () => {
+    await auth.logout()
+    closeMenu();
+  }
   return (
-    <Header_
-      {...props}
-      style={{
-        shadowColor: '#000',
-        shadowOffset: { width: 1, height: 1 },
-        shadowOpacity: 0.4,
-        shadowRadius: 3,
-        elevation: 5,
-      }}
-      containerStyle={{
-        backgroundColor: theme.background,
-        // paddingHorizontal: 10,
-        height: 60,
-        paddingTop: 0,
-        fontWeight: 'bold',
-        ...props.containerStyle,
+    <React.Fragment>
+      <Header_
+        {...props}
+        rightComponent={global.user ?
+          <View style={{ flexDirection: 'row', justifyContent: 'center', }}>
+            <Menu visible={visible} onDismiss={closeMenu} anchor={<TouchableOpacity onPress={openMenu}>
+              <Avatar.Text size={40} label={`${user.username[0]}${user.username[1]}`.toUpperCase()} />
+            </TouchableOpacity>}>
+              <Menu.Item onPress={() => { }} title="Profile" />
+              <Menu.Item
+                onPress={logout}
+                title="Logout"
+              />
+            </Menu>
+          </View>
+          : {}}
+        style={{
+          shadowColor: '#000',
+          shadowOffset: { width: 1, height: 1 },
+          shadowOpacity: 0.4,
+          shadowRadius: 3,
+          elevation: 5,
+        }}
+        containerStyle={{
+          backgroundColor: theme.background,
+          // paddingHorizontal: 10,
+          height: 60,
+          paddingTop: 0,
+          fontWeight: 'bold',
+          ...props.containerStyle,
 
-      }}
-    />
+        }}
+      />
+
+    </React.Fragment>
   );
 };
 export const SecondaryHeader = (props) => {
@@ -50,7 +75,6 @@ export const SecondaryHeader = (props) => {
 export const HeaderWithBack = ({ title, onBackPress, containerStyle }) => {
   const { isLightTheme, lightTheme, darkTheme } = useContext(ThemeContext);
   const theme = isLightTheme ? lightTheme : darkTheme;
-
   return (
     <React.Fragment>
       {Platform.OS !== "ios" ? <View style={{ marginTop: "10%" }} /> : null}

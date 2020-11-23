@@ -3,7 +3,7 @@ import {
     View,
     ScrollView,
     KeyboardAvoidingView,
-    AsyncStorage,
+
     ToastAndroid,
     Text
 } from "react-native";
@@ -12,13 +12,19 @@ import { BgView, Header } from "../../../components/Layouts";
 // import Button from "../../../components/Button";
 // import DropDownPicker from 'react-native-dropdown-picker';
 import { Button } from 'react-native-paper';
+import AsyncStorage from "@react-native-community/async-storage";
+import Loader from '../../../components/Loader';
+import api from '../../../services/ApiServices';
+import Utils from '../../../services/Utils';
+import auth from '../../../services/AuthService';
 
 
 class Review extends Component {
     state = {
         guarantor: "",
         loanType: null,
-        amount: ""
+        amount: "",
+        isLoading: false
     }
     async componentDidMount() {
         let loanAmount = await AsyncStorage.getItem("loanAmount")
@@ -26,7 +32,24 @@ class Review extends Component {
         let loanType = await AsyncStorage.getItem("loanType")
         await this.setState({ amount: loanAmount, guarantor, loanType })
     }
-    onApply = () => {
+    onApply = async () => {
+        try {
+            this.setState({ isLoading: true })
+            let res = await api.applyForLoan(this.state.loanAmount, 0, "Pending", "")
+            console.log(res)
+            if (!res.status) {
+                return global.showSnackbar("Your loan Request failed please. Try again!", "red");
+            }
+            await global.showSnackbar("Your loan sent successfully Now You can see in dashboard", "green");
+            await auth.setUserData(res.data)
+            Utils.navigate("home")
+        }
+        catch (ex) {
+            global.showSnackbar("Error Occurred While requesting your loan", "red");
+        }
+        finally {
+            this.setState({ isLoading: false })
+        }
         this.props.navigation.navigate("home")
     }
     render() {
@@ -34,6 +57,9 @@ class Review extends Component {
         return (
             <BgView>
                 <Header.Back title="Review" onBackPress={this.props.navigation.goBack} />
+                {this.state.isLoading &&
+                    <Loader isLoading={this.state.isLoading} />
+                }
                 <ScrollView>
                     <KeyboardAvoidingView>
                         <LabelInput

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { View, Text, KeyboardAvoidingView, TouchableOpacityBase } from "react-native";
+import { View, Text, KeyboardAvoidingView } from "react-native";
 import { BgView } from "../../components/Layouts";
 import Button from "../../components/Button";
 import { LabelInput } from "../../components/Forms";
 import api from "../../services/ApiServices";
+import auth from "../../services/AuthService";
 import Loader from "../../components/Loader";
 
 
@@ -25,12 +26,14 @@ class Login extends Component {
       this.setState({ isLoading: true })
 
       let res = await api.login(this.state.username, this.state.pin)
-       if (!res.status) {
+      if (!res.status) {
         return global.showSnackbar("User Not Fount", "red");
       }
+      await auth.setToken(res.data.token)
+      await auth.setUserData(res.data.userData)
       global.showSnackbar("Login Successfully!", "green");
-      this.setState({ username: "", pin: '' })
-      this.props.navigation.navigate("app", { screen: "home" });
+      global.reloadApp();
+      global.user = res.data.userData;
     }
     catch (ex) {
       console.log(ex)

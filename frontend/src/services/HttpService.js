@@ -1,6 +1,6 @@
 class HttpService {
     createJqReq(headers, type, data = undefined) {
-        let objReq: any = {
+        let objReq = {
             method: type,
             headers,
         };
@@ -12,7 +12,7 @@ class HttpService {
 
     handleError(ex) {
         if (ex.responseText) {
-            let error: any = "";
+            let error = "";
             try {
                 let jErr = JSON.parse(ex.responseText);
                 error = jErr;
