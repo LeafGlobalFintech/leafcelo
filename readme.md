@@ -4,28 +4,18 @@
 - Architecture
 	- ![Architecture](./frontend/img/leafCelo-Arch.png)
 - Implementation
-	- Dependencies 
-		- [openzeppelin-solidity](https://openzeppelin.com/contracts/)
 	- Smart Contract
 	    - constructor()
-		  - address payable leafToken
-		  - address refugee
-		  - address lender,          
-          - uint256 valueRequested,
-		  - uint256 valueRequestedDuration
-		  - string guarantorDetails;     
-        - creatingToken()
-  		- addRequester()
-		- addLender()
-		
-		- calculateInterests()
-		- watchDuration()
-		- requestWithdraw()
-		- requestCancel()    		
-		- issuingRewards()  
-		
-		- requestguarantorDetails()
-		- releaseguarantorAsset()
+			- uint256 _principal,
+        	- string memory _collateral,
+			- status = loanApplication(principal,dueDate);
+        	- interestRate = calculateRateOfInterest(principal,dueDate);
+        	- remainingBalance = remainingBal(principal);		      
+        - calculateRateOfInterest(uint256 _principal, uint256 _duration)  internal view returns (uint256 interestRate)
+  		- loanApplication(uint256 _principal, uint256 _duration) internal view returns (bool status)
+		- remainingBal(uint256 _principal) internal view returns (uint256 _remainingBal)
+		- getLoanApplicationStatus(uint loanid) public returns(bool status)
+		- getLoanPaymentStatus() public  returns(bool status)		
  	- Mobile Wallet	
 - Build
 Goal of this build is to build the apk for the android
@@ -34,6 +24,13 @@ Goal of this build is to build the apk for the android
     - npm run android(second terminial) 
 	
 - Testing
+	- UI side testing
+		- Download the apk
+		- pass user details. (Test user details -> user name : user2, pin:1234)
+	- Test Smart contract
+		- Remix (quick way)
+		- after the smart contract is deployed pass the parameters in the constructor : 27, "Smith"
+		- ![Remix](./frontend/img/Remix.png)
 - roadmap
 	- P2P lending
 - Announcements
