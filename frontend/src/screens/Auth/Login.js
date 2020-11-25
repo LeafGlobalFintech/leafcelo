@@ -13,7 +13,6 @@ class Login extends Component {
     username: "",
     pin: "",
     isLoading: false,
-    showSnackBar: false
   }
   onLogin = async () => {
     try {
