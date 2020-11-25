@@ -17,7 +17,7 @@ router.post("/applyForLoan", async (req, res) => {
       return res.sendError("Token Expire", "User Data not found !");
     if (!userDetail.celoPublicKey) {
       let accountDetail = await getAccount();
-      userDetail.celoPublicKey = accountDetail.privateKey;
+      userDetail.celoPublicKey = accountDetail.address;
     }
 
     let requestLoanObject = {};
