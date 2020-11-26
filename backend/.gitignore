@@ -1,3 +1,11 @@
 node_modules/
 yarn.lock
 *.lock
+dist/
+*lock.json
+
+yarn-error.log
+.env
+package-lock.json
+.fuse*
+files/
