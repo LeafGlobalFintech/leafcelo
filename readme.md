@@ -31,6 +31,18 @@ Goal of this build is to build the apk for the android
 		- Remix (quick way)
 		- after the smart contract is deployed pass the parameters in the constructor : 27, "Smith"
 		- ![Remix](./frontend/img/Remix.png)
+## Fund account
+- Users can use this link to fund their account https://celo.org/developers/faucet
+## Test Explorer
+- https://alfajores-blockscout.celo-testnet.org/
+
+## Deploying
+This is deployed to alfajores-forno
+- cd to root
+- node helloCello.js
+- truffle compile
+- truffle migrate --network alfajores
+
 - roadmap
 	- P2P lending
 - Announcements
