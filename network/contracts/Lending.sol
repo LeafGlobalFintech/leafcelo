@@ -1,9 +1,18 @@
-pragma solidity ^0.5.16;
+//pragma solidity ^0.4.26;
+pragma solidity >=0.6.0 <0.8.0;
+import "github.com/OpenZeppelin/zeppelin-solidity/contracts/math/SafeMath.sol";
 
 contract Lending {
     
     enum lendingApplicationStatus { New, Approved, Denied }
     enum lendingPaymentStatus { Open, Closed, Default }
+    
+    //Below events will help store the borrowers loan status in offchain.
+    //Primary use case is to use this off chain data for AI which can predict the the loan application status based on the historical status
+    event borrowerHistory(address indexed _from, bool status);
+    
+    using SafeMath for uint;
+    uint256 localBalance = 0;
     
     lendingApplicationStatus applicationStatus;
     
@@ -43,7 +52,7 @@ contract Lending {
         
     }
     
-    function getAllBorrowers() view public returns(address[] memory ,uint) {
+    function getAllBorrowers() view public returns(address[] memory,uint) {
         return (lendingAccts,lendingAccts.length);
     }
     
@@ -57,9 +66,16 @@ contract Lending {
     function loanApplicationStatus( uint _loanId, uint _principal, uint _duedate) internal view returns (bool status){
     return true;
 }
+    function loanStatus(address _address,uint _loanId) public view returns (bool status){
+         Lending storage lending = lendings[_address];
+         
+         emit borrowerHistory(_address,lending.loanStatus);
+         return status;
+    }
 
 function calculateRateOfInterest(uint256 _principal, uint256 _duration)  internal view returns (uint256 interestRate)
 {
+    
     if(_principal > 10 && _principal < 25) return 2;
     if(_principal > 25 && _principal < 50) return 1;
     
@@ -68,7 +84,9 @@ function calculateRateOfInterest(uint256 _principal, uint256 _duration)  interna
 
 function remainingBal(address _address,uint _principal) internal view returns (uint256 _remainingBal){
     Lending storage lending = lendings[_address];
+    
     _remainingBal = _principal + lending.rateofInterest;
+    localBalance = _principal.add(lending.rateofInterest);
     
     return _remainingBal;
 }
